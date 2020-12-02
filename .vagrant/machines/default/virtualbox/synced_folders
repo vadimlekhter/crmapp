@@ -1,0 +1,1 @@
+{"virtualbox":{"/crmapp":{"owner":"vagrant","group":"vagrant","guestpath":"/crmapp","hostpath":"C:/crmapp","disabled":false,"__vagrantfile":true},"/yii2-malicious":{"owner":"vagrant","group":"vagrant","guestpath":"/yii2-malicious","hostpath":"C:/yii2-malicious","disabled":false,"__vagrantfile":true}}}
