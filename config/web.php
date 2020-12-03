@@ -36,10 +36,17 @@ $config = [
         ],
         'request' => [
             'cookieValidationKey' => 'hdk4ks8jvmng7slkl5bndskj',
+            'parsers' => [
+                'application/json' => 'yii\web\JsonParser',
+            ]
         ],
         'urlManager' => [
             'enablePrettyUrl' => true,
+//            'enableStrictParsing' => true,
             'showScriptName' => false,
+            'rules' => [
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'api/v1/services'],
+            ],
         ],
         'view' => [
             'renderers' => [
@@ -123,6 +130,11 @@ $config = [
             'class' => FormattersModule::class,
             'basePath' => '@app',
             'viewPath' => '@app/modules/formatters/views'
+        ],
+        'api' => [
+            'class' => \app\modules\api\ApiModule::class,
+            'basePath' => '@app',
+            'viewPath' => '@app/modules/api/views'
         ]
     ],
     'params' => $params,
