@@ -1,4 +1,5 @@
 /vendor
 yii
 /runtime
+/.idea
 ubuntu-bionic-18.04-cloudimg-console.log
