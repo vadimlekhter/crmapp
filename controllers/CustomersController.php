@@ -65,22 +65,22 @@ class CustomersController extends Controller
     {
         $number = Yii::$app->request->get('phone_number');
         $records = $this->getRecordsByPhoneNumber($number);
-        if (!empty($records)) {
-            $data = [];
-            array_push($data, $records);
-        } else return $this->wrapIntoDataProvider($records);
-        return $this->wrapIntoDataProvider($data);
+
+        return $this->wrapIntoDataProvider($records);
     }
 
     private function getRecordsByPhoneNumber($number)
     {
-        $phone_record = PhoneRecord::findOne(['number' => $number]);
-        if (!$phone_record) return [];
+        $result = [];
+        $records = PhoneRecord::findAll(['number' => $number]);
+        if (!$records) return [];
 
-        $customer_record = CustomerRecord::findOne($phone_record->customer_id);
-        if (!$customer_record) return [];
-
-        return $this->makeCustomer($customer_record, $phone_record);
+        foreach ($records as $record) {
+            $customer_record = CustomerRecord::findOne($record->customer_id);
+            if (!$customer_record) return [];
+            array_push($result, $this->makeCustomer($customer_record, $record));
+        }
+        return $result;
     }
 
     private function wrapIntoDataProvider($data)
@@ -136,11 +136,14 @@ class CustomersController extends Controller
         $phone_record->save();
     }
 
-    private function makeCustomer(CustomerRecord $customer_record, PhoneRecord $phone_record)
+    private function makeCustomer(CustomerRecord $customer_record, PhoneRecord $phone_record = null)
     {
         $customer = new Customer($customer_record->name, new \DateTime($customer_record->birth_date));
         $customer->notes = $customer_record->notes;
-        $customer->phones = new Phone($phone_record->number, $phone_record->home_number, $phone_record->work_number);
+
+        if (!is_null($phone_record)) {
+            $customer->phones = new Phone($phone_record->number, $phone_record->home_number, $phone_record->work_number);
+        }
         return $customer;
     }
 }

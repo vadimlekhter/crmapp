@@ -9,6 +9,7 @@ use yii\grid\GridView;
 
 $this->title = 'User Records';
 $this->params['breadcrumbs'][] = $this->title;
+\app\assets\UsersAsset::register($this);
 ?>
 <div class="user-record-index">
 
@@ -18,7 +19,12 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Create User Record', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
+    <div id="search_div">
+        <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+    </div>
+    <div id="search_button_div">
+        <button id="search_button" class="btn btn-danger">Поиск</button>
+    </div>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

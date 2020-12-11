@@ -24,7 +24,11 @@ echo \yii\grid\GridView::widget(
 //                'attribute' => 'project_id',
 
                 'content' => function ($model) {
-                    return $model->phones->number;
+                    if (isset($model->phones->number)) {
+                        return $model->phones->number;
+                    } else {
+                        return null;
+                    }
                 },
 
                 'format' => 'html',
@@ -35,7 +39,11 @@ echo \yii\grid\GridView::widget(
 //                'attribute' => 'project_id',
 
                 'content' => function ($model) {
-                    return $model->phones->home_number;
+                    if (isset($model->phones->home_number)) {
+                        return $model->phones->home_number;
+                    } else {
+                        return null;
+                    }
                 },
 
                 'format' => 'html',
@@ -46,7 +54,11 @@ echo \yii\grid\GridView::widget(
 //                'attribute' => 'project_id',
 
                 'content' => function ($model) {
-                    return $model->phones->work_number;
+                    if (isset($model->phones->work_number)) {
+                        return $model->phones->work_number;
+                    } else {
+                        return null;
+                    }
                 },
 
                 'format' => 'html',

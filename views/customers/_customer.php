@@ -1,4 +1,4 @@
-_cus<?php
+<?php
 
 use \yii\widgets\DetailView;
 use \yii\web\View;
@@ -26,21 +26,21 @@ echo DetailView::widget(
                 'attribute' => 'Mobile Phone',
                 'format' => 'raw',
                 'value' => function ($model) {
-                    return $model->phones[0]->number;
+                    return $model->phones->number;
                 }
             ],
             [
                 'attribute' => 'Home Phone',
                 'format' => 'raw',
                 'value' => function ($model) {
-                    return $model->phones[0]->home_number;
+                    return $model->phones->home_number;
                 }
             ],
             [
                 'attribute' => 'Work Phone',
                 'format' => 'raw',
                 'value' => function ($model) {
-                    return $model->phones[0]->work_number;
+                    return $model->phones->work_number;
                 }
             ],
     ]

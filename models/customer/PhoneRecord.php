@@ -30,7 +30,6 @@ class PhoneRecord extends ActiveRecord
             ['customer_id', 'number'],
             ['customer_id', 'required'],
             ['number', 'string'],
-            ['number', 'required'],
             ['home_number', 'string'],
             ['work_number', 'string'],
         ];

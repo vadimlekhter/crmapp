@@ -14,7 +14,7 @@ use yii\web\IdentityInterface;
  * @property int $id
  * @property string $username
  * @property string $password
- * @property string $auth_key
+ * @property string $access_token
  */
 class UserRecord extends \yii\db\ActiveRecord implements IdentityInterface
 {
@@ -33,8 +33,8 @@ class UserRecord extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return [
             [['username', 'password'], 'required'],
-            [['username', 'password', 'auth_key'], 'string', 'max' => 255],
-            [['username', 'auth_key'], 'unique'],
+            [['username', 'password', 'auth_key', 'access_token'], 'string', 'max' => 255],
+            [['username', 'auth_key', 'access_token'], 'unique'],
         ];
     }
 
@@ -58,6 +58,7 @@ class UserRecord extends \yii\db\ActiveRecord implements IdentityInterface
 
         if ($this->isNewRecord) {
             $this->auth_key = Yii::$app->security->generateRandomString();
+            $this->access_token = Yii::$app->security->generateRandomString();
         }
 
         if ($this->isAttributeChanged('password')) {
@@ -74,7 +75,8 @@ class UserRecord extends \yii\db\ActiveRecord implements IdentityInterface
 
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        throw new NotSupportedException('Only by login - password');
+        return static::findOne(['access_token' => $token]);
+//        throw new NotSupportedException('Only by login - password');
     }
 
     public function getId()

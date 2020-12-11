@@ -4,6 +4,9 @@ use \app\modules\formatters\FormattersModule;
 use \app\services\EmailService;
 use \app\services\ServiceService;
 use \app\services\NotificationService;
+use \app\modules\api\ApiModule;
+use \yii\log\FileTarget;
+use \yii\log\DbTarget;
 
 $params = require('params.php');
 
@@ -45,7 +48,13 @@ $config = [
 //            'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'api/v1/services'],
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'api/service'],
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'api/customer'],
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'api/full-customer'],
+//                '<controller:[\w-]+>s' => '<controller>/index',
+//                '<controller:[\w-]+>/<id:\d+>' => '<controller>/view',
+//                '<controller:[\w-]+>/update/<id:\d+>' => '<controller>/update',
+//                '<controller:[\w-]+>/delete/<id:\d+>' => '<controller>/delete',
             ],
         ],
         'view' => [
@@ -79,7 +88,7 @@ $config = [
 //                    ]
 //                ],
                 [
-                    'class' => \yii\log\FileTarget::class,
+                    'class' => FileTarget::class,
                     'levels' => ['error'],
                     'logVars' => []
                 ],
@@ -90,7 +99,7 @@ $config = [
                     'logVars' => []
                 ],
                 [
-                    'class' => \yii\log\DbTarget::class,
+                    'class' => DbTarget::class,
                     'categories' => ['login'],
                     'logVars' => []
                 ],
@@ -132,7 +141,7 @@ $config = [
             'viewPath' => '@app/modules/formatters/views'
         ],
         'api' => [
-            'class' => \app\modules\api\ApiModule::class,
+            'class' => ApiModule::class,
             'basePath' => '@app',
             'viewPath' => '@app/modules/api/views'
         ]

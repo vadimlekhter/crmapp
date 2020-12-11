@@ -35,7 +35,7 @@ class CustomerRecord extends ActiveRecord
             ['id', 'number'],
             ['name', 'string', 'max' => 256],
             ['name', 'required'],
-            ['birth_date', 'datetime'],
+            ['birth_date', 'string'],
             ['notes', 'safe'],
         ];
     }
