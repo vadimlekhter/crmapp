@@ -41,14 +41,24 @@ class RbacController extends Controller
         $viewCustomer->description = 'Просмотр покупателя';
         $authManager->add($viewCustomer);
 
-        $addCustomer = $authManager->createPermission('addCustomer');
-        $addCustomer->description = 'Добавление списка покупателей';
-        $authManager->add($addCustomer);
+        $createCustomer = $authManager->createPermission('createCustomer');
+        $createCustomer->description = 'Добавление покупателя';
+        $authManager->add($createCustomer);
+
+        $updateCustomer = $authManager->createPermission('updateCustomer');
+        $updateCustomer->description = 'Добавление списка покупателей';
+        $authManager->add($updateCustomer);
+
+        $deleteCustomer = $authManager->createPermission('deleteCustomer');
+        $deleteCustomer->description = 'Удаление покупателя';
+        $authManager->add($deleteCustomer);
 
         $admin = $authManager->createRole('admin');
         $admin->description = 'Админ';
         $authManager->add($admin);
-        $authManager->addChild($admin, $addCustomer);
+        $authManager->addChild($admin, $createCustomer);
+        $authManager->addChild($admin, $updateCustomer);
+        $authManager->addChild($admin, $deleteCustomer);
 
         $manager = $authManager->createRole('manager');
         $manager->description = 'Менеджер';

@@ -10,6 +10,8 @@ use yii\db\ActiveRecord;
  * @property string $name
  * @property \DateTime $birth_date
  * @property string $notes
+ *
+ * @property PhoneRecord $phoneRecord
  */
 
 /**
@@ -35,8 +37,14 @@ class CustomerRecord extends ActiveRecord
             ['id', 'number'],
             ['name', 'string', 'max' => 256],
             ['name', 'required'],
-            ['birth_date', 'string'],
+            ['birth_date', 'date', 'format' => 'php:Y-m-d'],
             ['notes', 'safe'],
         ];
     }
+
+    public function getPhoneRecord()
+    {
+        return $this->hasOne(PhoneRecord::class, ['customer_id' => 'id']);
+    }
+
 }

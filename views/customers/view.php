@@ -27,24 +27,33 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             [
-                'attribute' => 'Mobile Phone',
-                'format' => 'raw',
+                'attribute' => 'Phone',
                 'value' => function ($model) {
-                    return $model->phones->number;
+                    if ($model->phones->number) {
+                        return $model->phones->number;
+                    } else {
+                        return '';
+                    }
                 }
             ],
             [
                 'attribute' => 'Home Phone',
-                'format' => 'raw',
                 'value' => function ($model) {
-                    return $model->phones->home_number;
+                    if ($model->phones->home_number) {
+                        return $model->phones->home_number;
+                    } else {
+                        return '';
+                    }
                 }
             ],
             [
                 'attribute' => 'Work Phone',
-                'format' => 'raw',
                 'value' => function ($model) {
-                    return $model->phones->work_number;
+                    if ($model->phones->work_number) {
+                        return $model->phones->work_number;
+                    } else {
+                        return '';
+                    }
                 }
             ],
         ],

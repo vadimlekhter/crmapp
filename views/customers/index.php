@@ -15,12 +15,13 @@ echo \yii\grid\GridView::widget(
         'dataProvider' => $records,
         'columns' => [
 //            ['class' => 'yii\grid\SerialColumn'],
+            'id',
             'name',
             'birth_date:date',
             'notes',
 //            'phones.0.number:text:Phones',
             [
-                'label' => 'Mobile Phone',
+                'label' => 'Phone',
 //                'attribute' => 'project_id',
 
                 'content' => function ($model) {
@@ -65,11 +66,21 @@ echo \yii\grid\GridView::widget(
 
             ],
             ['class' => 'yii\grid\ActionColumn',
-                'template' => '{view}',
+                'template' => '{view} {update} {delete}',
                 'buttons' => [
                     'view' => function ($url, $model, $key) {
                         $icon = \yii\bootstrap\Html::icon('hand-right');
-                        return Html::a($icon, ['customers/view', 'name' => $model->name],
+                        return Html::a($icon, ['customers/view', 'id' => $model->id],
+                        );
+                    },
+                    'update' => function ($url, $model, $key) {
+                        $icon = \yii\bootstrap\Html::icon('edit');
+                        return Html::a($icon, ['customers/update', 'id' => $model->id],
+                        );
+                    },
+                    'delete' => function ($url, $model, $key) {
+                        $icon = \yii\bootstrap\Html::icon('erase');
+                        return Html::a($icon, ['customers/delete', 'id' => $model->id],
                             ['data' => [
                                 'confirm' => 'View customer?',
                                 'method' => 'post'

@@ -8,6 +8,11 @@ Accept: application/json
 
 ###
 
+GET http://localhost:8888/api/customers/1
+Accept: application/json
+
+###
+
 DELETE http://localhost:8888/api/customers/3
 Accept: application/json
 
@@ -17,14 +22,14 @@ POST http://localhost:8888/api/customers
 Content-Type: application/json
 
 {
-  "name": "Petya",
+  "name": "Olya",
   "birth_date": "2011-11-11",
   "notes": "Customer"
 }
 
 ###
 
-PUT http://localhost:8888/api/customers/8
+PUT http://localhost:8888/api/customers/9
 Content-Type: application/json
 
 {
@@ -32,3 +37,45 @@ Content-Type: application/json
 }
 
 ###
+
+GET http://localhost:8888/api/full-customers
+Accept: application/json
+
+###
+
+GET http://localhost:8888/api/full-customers/4
+Accept: application/json
+
+###
+
+DELETE http://localhost:8888/api/full-customers/49
+Accept: application/json
+
+###
+
+POST http://localhost:8888/api/full-customers
+Content-Type: application/json
+
+{
+  "name": "Jane",
+  "birth_date": "2011-11-11",
+  "notes": "Customer",
+  "number": "123",
+  "home_number": "123",
+  "work_number": ""
+}
+
+###
+
+PUT http://localhost:8888/api/full-customers/47
+Content-Type: application/json
+
+{
+  "name": "Vadim",
+  "notes": "Customer",
+  "birth_date": "1971-06-06",
+  "number": "123",
+  "home_number": "123",
+  "work_number": "123"
+}
+
