@@ -15,6 +15,7 @@ use yii\web\IdentityInterface;
  * @property string $username
  * @property string $password
  * @property string $access_token
+ * @property string $auth_key
  */
 class UserRecord extends \yii\db\ActiveRecord implements IdentityInterface
 {

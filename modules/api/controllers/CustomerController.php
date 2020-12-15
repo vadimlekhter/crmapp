@@ -7,13 +7,35 @@ use app\models\customer\Customer;
 use app\modules\api\models\CustomerRecord;
 use yii\base\Exception;
 use yii\data\ActiveDataProvider;
+use yii\filters\auth\HttpBearerAuth;
+use yii\filters\auth\HttpBasicAuth;
+use yii\filters\auth\QueryParamAuth;
+use yii\filters\ContentNegotiator;
 use yii\helpers\Url;
 use yii\rest\Controller;
+use yii\web\Response;
 use yii\web\ServerErrorHttpException;
 
 
 class CustomerController extends Controller
 {
+    public function behaviors()
+    {
+//        $behaviours = parent::behaviors();
+        $behaviors['authenticator'] = [
+//            'class' => HttpBasicAuth::class,
+//            'class' => QueryParamAuth::class,
+            'class' => HttpBearerAuth::class
+        ];
+        $behaviors['contentNegotiator'] = [
+            'class' => ContentNegotiator::class,
+            'formats' => [
+                'application/json' => Response::FORMAT_JSON,
+            ],
+        ];
+        return $behaviors;
+    }
+
     public function actionIndex()
     {
         return new ActiveDataProvider(
