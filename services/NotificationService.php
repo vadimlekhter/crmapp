@@ -4,13 +4,13 @@
 namespace app\services;
 
 
-use app\services\events\AddServiceEvent;
+use app\services\events\NewServiceEvent;
 use app\services\events\DeleteServiceEvent;
 use \yii\base\Component;
 
 class NotificationService extends Component
 {
-    public function sendAddServiceEmail(AddServiceEvent $e)
+    public function sendNewServiceEmail(NewServiceEvent $e)
     {
         $to = \Yii::$app->params['adminEmail'];
         $subject = 'New service';

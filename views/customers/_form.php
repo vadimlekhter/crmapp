@@ -18,13 +18,21 @@ $form = ActiveForm::begin([
 //echo $form->errorSummary([$customer, $phone]);
 
 echo $form->field($customer_record, 'name');
-echo $form->field($customer_record, 'birth_date');
+echo $form->field($customer_record, 'birth_date')->widget(\kartik\date\DatePicker::class, [
+    'name' => 'check_issue_date',
+    'value' => date('d-M-Y', strtotime('+2 days')),
+    'options' => ['placeholder' => 'Select issue date ...'],
+    'pluginOptions' => [
+        'format' => 'dd-M-yyyy',
+        'todayHighlight' => true
+    ]
+]);
 echo $form->field($customer_record, 'notes');
 
 echo $form->field($phone_record, 'number');
 echo $form->field($phone_record, 'home_number');
 echo $form->field($phone_record, 'work_number');
 
-echo Html::submitButton( 'Submit', ['class' => 'btn btn-primary']);
+echo Html::submitButton('Submit', ['class' => 'btn btn-primary']);
 
 ActiveForm::end();

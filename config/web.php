@@ -128,7 +128,7 @@ $config = [
         ],
         'serviceService' => [
             'class' => ServiceService::class,
-//            'on ' . ServiceService::EVENT_NEW_SERVICE => function (AddServiceEvent $e) {
+//            'on ' . ServiceService::EVENT_NEW_SERVICE => function (NewServiceEvent $e) {
 //                Yii::$app->notificationService->sendNewAddServiceEmail($e);
 //            }
         ],

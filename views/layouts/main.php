@@ -15,6 +15,8 @@ app\assets\MyMainAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
     <?= Html::csrfMetaTags() ?>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <?php $this->beginBody() ?>

@@ -5,7 +5,7 @@ namespace app\services;
 
 use app\behaviours\ServiceBehaviours;
 use app\models\service\ServiceRecord;
-use app\services\events\AddServiceEvent;
+use app\services\events\NewServiceEvent;
 use app\services\events\DeleteServiceEvent;
 use yii\base\Component;
 
@@ -25,9 +25,9 @@ class ServiceService extends Component
         ];
     }
 
-    public function emailAddService(ServiceRecord $model)
+    public function emailNewService(ServiceRecord $model)
     {
-        $event = $this->eventAddService($model);
+        $event = $this->eventNewService($model);
 //        $notificationService = new NotificationService();
 //        $this->on(ServiceService::EVENT_NEW_SERVICE, [$notificationService, 'sendAddServiceEmail'], $event);
         $this->trigger(self::EVENT_NEW_SERVICE, $event);
@@ -41,9 +41,9 @@ class ServiceService extends Component
         $this->trigger(self::EVENT_DELETE_SERVICE, $event);
     }
 
-    private function eventAddService(ServiceRecord $model)
+    private function eventNewService(ServiceRecord $model)
     {
-        $event = new AddServiceEvent();
+        $event = new NewServiceEvent();
         $event->service = $model->name;
         $event->hourly_rate = $model->hourly_rate;
         return $event;

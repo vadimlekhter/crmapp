@@ -47,4 +47,9 @@ class CustomerRecord extends ActiveRecord
         return $this->hasOne(PhoneRecord::class, ['customer_id' => 'id']);
     }
 
+    public function extraFields()
+    {
+        return ['phoneRecord'];
+    }
+
 }

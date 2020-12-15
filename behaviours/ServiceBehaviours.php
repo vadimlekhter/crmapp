@@ -15,7 +15,7 @@ class ServiceBehaviours extends Behavior
     {
         $notificationService = new NotificationService();
         return [
-            ServiceService::EVENT_NEW_SERVICE => [$notificationService, 'sendAddServiceEmail'],
+            ServiceService::EVENT_NEW_SERVICE => [$notificationService, 'sendNewServiceEmail'],
             ServiceService::EVENT_DELETE_SERVICE => [$notificationService, 'sendDeleteServiceEmail']
         ];
     }

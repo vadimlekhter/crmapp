@@ -4,7 +4,7 @@
 namespace app\modules\api\controllers;
 
 use app\models\customer\Customer;
-use app\models\customer\CustomerRecord;
+use app\modules\api\models\CustomerRecord;
 use yii\base\Exception;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Url;

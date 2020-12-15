@@ -85,7 +85,7 @@ class ServicesController extends Controller
         $model = new ServiceRecord();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $serviceService = new ServiceService();
-            $serviceService->emailAddService($model);
+            $serviceService->emailNewService($model);
             return $this->redirect(['index']);
         }
 

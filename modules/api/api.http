@@ -1,14 +1,19 @@
+GET http://localhost:8888/api/services?fields=Work/Price&expand=Id
+Accept: application/json
+
+###
+
 GET http://localhost:8888/api/services/1
 Accept: application/json
 
 ###
 
-GET http://localhost:8888/api/customers
+GET http://localhost:8888/api/customers?expand=phoneRecord
 Accept: application/json
 
 ###
 
-GET http://localhost:8888/api/customers/1
+GET http://localhost:8888/api/customers
 Accept: application/json
 
 ###
