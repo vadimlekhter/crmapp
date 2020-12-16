@@ -14,9 +14,9 @@ Accept: application/json
 ###
 
 GET http://localhost:8888/api/customers
-#Accept: application/json
-#Authorization: Basic MTIzNDU2
-Authorization: Bearer 123456
+Accept: application/json
+Authorization: Basic MTIzNDU2Og==
+#Authorization: Bearer 123456
 
 ###
 

@@ -3,10 +3,9 @@
 
 namespace app\modules\api\controllers;
 
-use app\models\customer\Customer;
 use app\modules\api\models\CustomerRecord;
-use yii\base\Exception;
 use yii\data\ActiveDataProvider;
+use yii\filters\auth\CompositeAuth;
 use yii\filters\auth\HttpBearerAuth;
 use yii\filters\auth\HttpBasicAuth;
 use yii\filters\auth\QueryParamAuth;
@@ -23,9 +22,12 @@ class CustomerController extends Controller
     {
 //        $behaviours = parent::behaviors();
         $behaviors['authenticator'] = [
-//            'class' => HttpBasicAuth::class,
-//            'class' => QueryParamAuth::class,
-            'class' => HttpBearerAuth::class
+            'class' => CompositeAuth::class,
+            'authMethods' => [
+                HttpBasicAuth::class,
+                HttpBearerAuth::class,
+                QueryParamAuth::class,
+            ]
         ];
         $behaviors['contentNegotiator'] = [
             'class' => ContentNegotiator::class,

@@ -1,4 +1,5 @@
 /config/web.php
+/config/console.php
 /vendor
 yii
 /runtime
