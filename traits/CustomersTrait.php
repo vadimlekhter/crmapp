@@ -129,10 +129,6 @@ trait CustomersTrait
 
         if ($this->load($customer_record, $phone_record, \Yii::$app->request->post())) {
             $customer_record->save();
-            if (($customer_record->hasErrors())) {
-                var_dump($customer_record->getErrors());
-                exit();
-            }
             $phone_record->save();
             $this->redirect('/customers/index');
             return ['customer_record' => $customer_record, 'phone_record' => $phone_record];

@@ -5,6 +5,7 @@ use \yii\widgets\ActiveForm;
 use \app\models\customer\CustomerRecord;
 use \app\models\customer\PhoneRecord;
 use yii\helpers\Html;
+use \kartik\date\DatePicker;
 
 /**
  * @var View $this
@@ -18,13 +19,15 @@ $form = ActiveForm::begin([
 //echo $form->errorSummary([$customer, $phone]);
 
 echo $form->field($customer_record, 'name');
-echo $form->field($customer_record, 'birth_date')->widget(\kartik\date\DatePicker::class, [
+echo $form->field($customer_record, 'birth_date')->widget(DatePicker::class, [
     'name' => 'check_issue_date',
-    'value' => date('d-M-Y', strtotime('+2 days')),
-    'options' => ['placeholder' => 'Select issue date ...'],
+    'size' => 'lg',
+//    'value' => date('D'),
+//    'options' => ['placeholder' => 'Select issue date ...'],
     'pluginOptions' => [
-        'format' => 'dd-M-yyyy',
-        'todayHighlight' => true
+        'format' => 'yyyy-mm-dd',
+        'todayHighlight' => true,
+        'clearBtn' => true
     ]
 ]);
 echo $form->field($customer_record, 'notes');
