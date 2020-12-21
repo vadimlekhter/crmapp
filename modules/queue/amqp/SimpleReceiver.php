@@ -26,7 +26,7 @@ class SimpleReceiver
         $channel = $connection->channel();
 
         $channel->queue_declare(
-            'pizzaTime',    #имя очереди, такое же, как и у отправителя
+            'order',    #имя очереди, такое же, как и у отправителя
             false,        #пассивный
             false,        #надёжный
             false,        #эксклюзивный
@@ -37,13 +37,17 @@ class SimpleReceiver
 
         $callback = function ($msg) {
             $message = $msg->body;
-            echo " [x] Received ", $message, "\n";
+            $order = explode(' ', $message);
+            $item = $order[0];
+            $customer = $order[1];
             $queueService = new QueueService();
-            $queueService->emailQueueMessage($message);
+            $queueService->emailQueueMessage($item, $customer);
+            \Yii::$app->redis->append($customer, $item);
+            echo " [x] Received ", $message, "\n";
         };
 
         $channel->basic_consume(
-            'pizzaTime',                    #очередь
+            'order',                    #очередь
             '',                            #тег получателя - Идентификатор получателя, валидный в пределах текущего канала. Просто строка
             false,                        #не локальный - TRUE: сервер не будет отправлять сообщения соединениям, которые сам опубликовал
             true,                        #без подтверждения - отправлять соответствующее подтверждение обработчику, как только задача будет выполнена

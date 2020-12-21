@@ -32,7 +32,7 @@ class NotificationService extends Component
     {
         $to = \Yii::$app->params['adminEmail'];
         $subject = 'Queue Message';
-        $data = ['message' => $e->message];
+        $data = ['item' => $e->item, 'customer' => $e->customer];
         $views = ['html' => 'queue-html', 'text' => 'queue-text'];
         \Yii::$app->emailService->send($to, $subject, $data, $views);
     }

@@ -2,7 +2,8 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-/** @var $message string */
+/** @var $item string */
+/** @var $customer string */
 
 ?>
 
@@ -10,4 +11,5 @@ use yii\helpers\Url;
 
 <?php
 echo Html::tag('p', 'Привет!');
-echo Html::tag('p', $message);
+echo Html::tag('p', $item);
+echo Html::tag('p', $customer);

@@ -11,11 +11,11 @@ use PhpAmqpLib\Message\AMQPMessage;
 class SimpleSender
 {
     /**
-     * Отправляет сообщение в очередь pizzaTime
+     * Отправляет сообщение в очередь order
      *
      * @param string $message
      */
-    public function execute($message)
+    public function execute(string $message)
     {
         /**
          * Создаёт совединение с RabbitAMQP
@@ -31,7 +31,7 @@ class SimpleSender
         $channel = $connection->channel();
 
         $channel->queue_declare(
-            'pizzaTime',    #queue name - Имя очереди может содержать до 255 байт UTF-8 символов
+            'order',    #queue name - Имя очереди может содержать до 255 байт UTF-8 символов
             false,        #passive - может использоваться для проверки того, инициирован ли обмен, без того, чтобы изменять состояние сервера
             false,        #durable - убедимся, что RabbitMQ никогда не потеряет очередь при падении - очередь переживёт перезагрузку брокера
             false,        #exclusive - используется только одним соединением, и очередь будет удалена при закрытии соединения
@@ -43,7 +43,7 @@ class SimpleSender
         $channel->basic_publish(
             $msg,        #message
             '',            #exchange
-            'pizzaTime'    #routing key
+            'order'    #routing key
         );
 
         $channel->close();

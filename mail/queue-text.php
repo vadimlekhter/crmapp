@@ -1,8 +1,10 @@
 <?php
 
-/** @var $message string */
+/** @var $item string */
+/** @var $customer string */
 ?>
 
 <p>Привет!</p>
 
-<?php echo $message;
+<?php echo $item;?>
+<?php echo $customer;?>
