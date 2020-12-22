@@ -30,7 +30,7 @@ Content-Type: application/json
 
 {
   "name": "Olya",
-  "birth_date": "2011-11-11",
+  "birth_date": "2001-11-11",
   "notes": "Customer"
 }
 
@@ -65,7 +65,7 @@ Content-Type: application/json
 
 {
   "name": "Jane",
-  "birth_date": "2011-11-11",
+  "birth_date": "2001-11-11",
   "notes": "Customer",
   "number": "123",
   "home_number": "123",
